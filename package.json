@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng s --proxy-config proxy.config.json -o",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -21,7 +21,13 @@
     "@angular/platform-browser": "^4.0.0",
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.0.0",
+    "axios": "^0.16.2",
+    "body-parser": "^1.17.2",
     "core-js": "^2.4.1",
+    "express": "^4.15.4",
+    "express-livereload": "0.0.24",
+    "node-social-api": "0.0.10",
+    "node-watch": "^0.5.5",
     "rxjs": "^5.4.1",
     "zone.js": "^0.8.14"
   },
