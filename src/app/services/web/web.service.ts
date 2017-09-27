@@ -9,7 +9,7 @@ export class WebService {
 
   getWebpage(url) {
     return this.http.get(url);
-    //.map(res => res.json());
+    // .map(res => res.json());
   }
 
   getTweets() {
