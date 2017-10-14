@@ -9,17 +9,20 @@ import { appRoutes } from './app.routes';
 
 import { WebService } from './services/web/web.service';
 import { LoginService } from './services/login/login.service';
+import { UserService } from './services/user/user.service';
 import { RouterModule } from '@angular/router';
 import { ProfileComponent } from './components/profile/profile.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { LoginComponent } from './components/login/login.component';
+import { FacebookComponent } from './components/facebook/facebook.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProfileComponent,
     SignUpComponent,
-    LoginComponent
+    LoginComponent,
+    FacebookComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,8 @@ import { LoginComponent } from './components/login/login.component';
   ],
   providers: [
     WebService,
-    LoginService
+    LoginService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })

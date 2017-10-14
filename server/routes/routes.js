@@ -1,34 +1,52 @@
-// app/routes.js
 module.exports = function (app, passport) {
 
-        // PROBABLY NOT GOING TO USE THIS PAGE 
-    
-    app.get('/profile', isLoggedIn, function (req, res) {
+    app.get('/api/profile', isLoggedIn, function (req, res) {
         console.log('req.user')
         console.log(req.user)
-        // res.render('profile.ejs', {
-        //     user : req.user // get the user out of session and pass to template
-        // });
+        res.status(200).json(req.user);
     });
-app.post('/api/test', (req, res) => {
-    res.send('api works');
-});
 
-    app.post('/api/signup', passport.authenticate('local-signup', {
-        successRedirect: '/profile', // redirect to the secure profile section
-        failureRedirect: '/signup', // redirect back to the signup page if there is an error
-        failureFlash: true // allow flash messages
-    }));
+    app.post('/api/signup', function (req, res, next) {
+        passport.authenticate('local-signup', function (err, user) {
+            req.logIn(user, function () {
+                res.status(err ? 500 : 200).send(err ? err : user);
+            });
+        })(req, res, next);
+    });
 
-      app.post('/login', passport.authenticate('local-login', {
-        successRedirect : '/profile', // redirect to the secure profile section
-        failureRedirect : '/login', // redirect back to the signup page if there is an error
-        failureFlash : true // allow flash messages
-    }));
+    app.post('/api/login', function (req, res, next) {
+        passport.authenticate('local-login', function (err, user) {
+            if (err) {
+                return next(err);
+            }
+            if (!user) {
+                return res.status(401).json({
+                    err: 'user not found'
+                });
+            }
+            req.logIn(user, function (err) {
+                if (err) {
+                    return res.status(500).json({
+                        err: 'Could not log in user'
+                    });
+                }
+                res.status(200).json({
+                    status: 'Login successful!'
+                });
+            });
+        })(req, res, next);
+    });
 
-    // =====================================
-    // LOGOUT ==============================
-    // =====================================
+    app.get('/api/auth/facebook', passport.authenticate('facebook', { scope: ['email'] }));
+
+    // handle the callback after facebook has authenticated the user
+    app.get('/api/auth/facebook/callback',
+        passport.authenticate('facebook', {
+            successRedirect: '/profile',
+            failureRedirect: '/'
+        }));
+
+
     app.get('/logout', function (req, res) {
         req.logout();
         res.redirect('/');
@@ -40,9 +58,13 @@ app.post('/api/test', (req, res) => {
 function isLoggedIn(req, res, next) {
 
     // if user is authenticated in the session, carry on 
-    if (req.isAuthenticated())
+    if (req.isAuthenticated()) {
+        //not sure whether to return this or call it
         return next();
+    }
 
     // if they aren't redirect them to the home page
-    res.redirect('/');
+    // maybe?
+    res.send(401);
+    // res.redirect('/');
 }
