@@ -3,9 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../../services/user/user.service';
 
 @Component({
-  selector: 'app-profile',
+  selector: 'ss-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
 

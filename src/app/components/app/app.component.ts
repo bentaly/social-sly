@@ -3,20 +3,12 @@ import { Component } from '@angular/core';
 import { WebService } from '../../services/web/web.service';
 
 @Component({
-  selector: 'app-root',
+  selector: 'ss-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
 
-  constructor(private webService: WebService) {
-
-    // this.webService.getTweets().subscribe(
-    //   data => console.log(data.json()),
-    //   err => console.log(err),
-    //   () => console.log('done this!')
-    // );
-  }
-
+  constructor(private webService: WebService) {}
 
 }

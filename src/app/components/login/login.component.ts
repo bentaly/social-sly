@@ -11,9 +11,9 @@ export class User {
 }
 
 @Component({
-  selector: 'app-login', // todo change selector
+  selector: 'ss-login', // todo change selector
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
 

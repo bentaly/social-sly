@@ -46,6 +46,15 @@ module.exports = function (app, passport) {
             failureRedirect: '/'
         }));
 
+    app.get('/api/auth/twitter', passport.authenticate('twitter'));
+
+    // handle the callback after twitter has authenticated the user
+    app.get('/api/auth/twitter/callback',
+        passport.authenticate('twitter', {
+            successRedirect: '/profile',
+            failureRedirect: '/'
+        }));
+
 
     app.get('/logout', function (req, res) {
         req.logout();
@@ -65,6 +74,6 @@ function isLoggedIn(req, res, next) {
 
     // if they aren't redirect them to the home page
     // maybe?
-    res.send(401);
+    res.sendStatus(401);
     // res.redirect('/');
 }
