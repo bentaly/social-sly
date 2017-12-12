@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class LoginService {
 
-  constructor(private http: Http) { }
+  constructor(private http: HttpClient) { }
 
   login(user): Observable<any> {
     return this.http.post('/api/login', user);

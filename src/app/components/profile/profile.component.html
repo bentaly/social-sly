@@ -1,3 +1,7 @@
 <p>
-PROFFIILE
+    Tweets
 </p>
+
+<div *ngFor="let tweet of tweets">
+    "{{tweet.user.name}}" :{{tweet.text}}
+</div>

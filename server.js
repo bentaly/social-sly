@@ -55,7 +55,6 @@ app.get('*', (req, res) => {
 var originsWhitelist = [
   'http://localhost:4200',      //this is my front-end url for development
   // 'http://localhost:3000',      //this is my back-end url for development, needed?
-  // 'http://www.myproductionurl.com'
 ];
 var corsOptions = {
   origin: function (origin, callback) {
@@ -66,7 +65,6 @@ var corsOptions = {
 }
 
 app.use(cors(corsOptions));
-// app.use(cors());
 app.set('port', port);
 
 const server = http.createServer(app);
