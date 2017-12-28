@@ -5,11 +5,8 @@ const configAuth = require('../config/auth');
 
 module.exports = function(app, passport) {
 
-    // const request = require('request');
-
     app.get('/api/profile', isLoggedIn, function(req, res) {
-    // app.get('/api/profile', function(req, res) {
-        console.log('req.user')
+         console.log('req.user')
         console.log(req.user)
         res.status(200).json(req.user);
     });

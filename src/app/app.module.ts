@@ -14,13 +14,19 @@ import { appRoutes } from './app.routes';
 import { WebService } from './services/web/web.service';
 import { LoginService } from './services/login/login.service';
 import { UserService } from './services/user/user.service';
+import { GmailComponent } from './components/gmail/gmail.component';
+import { GmailListItemsComponent } from './components/gmail-list-items/gmail-list-items.component';
+import { GmailDetailViewComponent } from './components/gmail-detail-view/gmail-detail-view.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProfileComponent,
     SignUpComponent,
-    LoginComponent
+    LoginComponent,
+    GmailComponent,
+    GmailListItemsComponent,
+    GmailDetailViewComponent
   ],
   imports: [
     BrowserModule,
